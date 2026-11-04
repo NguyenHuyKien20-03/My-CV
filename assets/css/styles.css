@@ -374,7 +374,30 @@ ul {
 .contact-list a { color: var(--color-primary); }
 .contact-list a:hover { text-decoration: underline; }
 
-/* ==========================================================================
+.contact-inner form { margin-top: var(--space-3); }
+
+.contact-inner fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  border: 2px solid #000;
+  border-radius: var(--radius-sm);
+  transition: border-color 0.15s;
+}
+
+.contact-inner input {
+  padding: 0.5rem;
+  border: 2px solid #000;
+  border-radius: var(--radius-sm);
+}
+
+.contact-inner input:user-invalid { border-color: #dc2626; }
+.contact-inner input:user-valid { border-color: #16a34a; }
+.contact-inner input:focus { border-color: #f59e0b; outline: none; }
+
+/* ========================================================================== 
    9. FOOTER
    ========================================================================== */
 .site-footer {

@@ -7,7 +7,8 @@
   <meta charset="UTF-8" />
   <!-- viewport: nền tảng của responsive mobile-first, khóa tỉ lệ 1:1 với thiết bị -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio CV của Nguyễn Huy Kiên – Frontend Developer. Dự án, kỹ năng và thông tin liên hệ." />
+  <meta name="description"
+    content="Portfolio CV của Nguyễn Huy Kiên – Frontend Developer. Dự án, kỹ năng và thông tin liên hệ." />
   <meta name="author" content="Nguyễn Huy Kiên" />
   <title>Nguyễn Huy Kiên · Frontend Developer</title>
 
@@ -29,7 +30,7 @@
       </a>
 
       <!-- NAV dùng Flexbox (xem styles.css) -->
-      <nav class="main-nav" aria-label="Điều hướng chính">
+      <nav class="main-nav" aria-label="Điều hướng chính">ff
         <ul class="nav-list">
           <li><a href="#about">Giới thiệu</a></li>
           <li><a href="#skills">Kỹ năng</a></li>
@@ -64,10 +65,7 @@
 
         <!-- Ảnh đại diện: dùng placeholder, thay bằng ảnh thật của bạn -->
         <figure class="hero-avatar">
-          <img
-            src="./assets/img/avatar.jpg"
-            alt="Ảnh đại diện của Nguyễn Huy Kiên"
-            width="320" height="320" />
+          <img src="./assets/img/avatar.jpg" alt="Ảnh đại diện của Nguyễn Huy Kiên" width="320" height="320" />
         </figure>
       </div>
     </section>
@@ -100,8 +98,7 @@
 
           <!-- Mỗi thẻ là một <article> độc lập, có thể đứng riêng -->
           <article class="card">
-            <img class="card-media"
-              src="https://i.pinimg.com/736x/58/ca/43/58ca43af297fededf4dc2e606ac387fa.jpg"
+            <img class="card-media" src="https://i.pinimg.com/736x/58/ca/43/58ca43af297fededf4dc2e606ac387fa.jpg"
               alt="Ảnh minh họa dự án Landing Page" width="600" height="360" />
             <div class="card-body">
               <h3 class="card-title">Landing Page Sản Phẩm</h3>
@@ -118,8 +115,7 @@
           </article>
 
           <article class="card">
-            <img class="card-media"
-              src="https://i.pinimg.com/736x/da/49/0d/da490d8acd47b440c3908bb611690575.jpg"
+            <img class="card-media" src="https://i.pinimg.com/736x/da/49/0d/da490d8acd47b440c3908bb611690575.jpg"
               alt="Ảnh minh họa dự án Todo App" width="600" height="360" />
             <div class="card-body">
               <h3 class="card-title">Ứng dụng Todo List</h3>
@@ -135,8 +131,7 @@
           </article>
 
           <article class="card">
-            <img class="card-media"
-              src="https://i.pinimg.com/1200x/c8/4b/b4/c84bb438352453e563cb86ad9d3fa55e.jpg"
+            <img class="card-media" src="https://i.pinimg.com/1200x/c8/4b/b4/c84bb438352453e563cb86ad9d3fa55e.jpg"
               alt="Ảnh minh họa dự án Weather Dashboard" width="600" height="360" />
             <div class="card-body">
               <h3 class="card-title">Weather Dashboard</h3>
@@ -152,8 +147,7 @@
           </article>
 
           <article class="card">
-            <img class="card-media"
-              src="https://i.pinimg.com/1200x/61/e4/88/61e488b32697027057a4e865a2a3905b.jpg"
+            <img class="card-media" src="https://i.pinimg.com/1200x/61/e4/88/61e488b32697027057a4e865a2a3905b.jpg"
               alt="Ảnh minh họa dự án Blog cá nhân" width="600" height="360" />
             <div class="card-body">
               <h3 class="card-title">Blog Cá Nhân</h3>
@@ -179,10 +173,24 @@
         <p class="section-sub">Mở cho các cơ hội thực tập &amp; việc làm Frontend.</p>
 
         <ul class="contact-list">
-          <li><span class="contact-label">Server discord</span> <a href="https://discord.gg/7tmRDAwRz8">https://discord.gg/7tmRDAwRz8</a></li>
-          <li><span class="contact-label">GitHub</span> <a href="https://github.com/NguyenHuyKien20-03">https://github.com/NguyenHuyKien20-03</a></li>
-          <li><span class="contact-label">facebook</span> <a href="https://www.facebook.com/share/1DvXrJbWRL/?mibextid=wwXIfr">https://www.facebook.com/share/1DvXrJbWRL/?mibextid=wwXIfr</a></li>
+          <li><span class="contact-label">Server discord</span> <a
+              href="https://discord.gg/7tmRDAwRz8">https://discord.gg/7tmRDAwRz8</a></li>
+          <li><span class="contact-label">GitHub</span> <a
+              href="https://github.com/NguyenHuyKien20-03">https://github.com/NguyenHuyKien20-03</a></li>
+          <li><span class="contact-label">facebook</span> <a
+              href="https://www.facebook.com/share/1DvXrJbWRL/?mibextid=wwXIfr">https://www.facebook.com/share/1DvXrJbWRL/?mibextid=wwXIfr</a>
+          </li>
         </ul>
+
+        <form>
+          <fieldset>
+            <legend>liên hệ sau</legend>
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" required
+              placeholder="Nhập email của bạn" />
+            <button type="button">Gửi</button>
+          </fieldset>
+        </form>
       </div>
     </section>
 
