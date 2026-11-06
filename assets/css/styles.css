@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PORTFOLIO CV – styles.css
+   PORTFOLIO CV – styles.css (NEON CYBERPUNK EDITION)
    Chiến lược: MOBILE-FIRST
    - Mặc định (ngoài media query) = giao diện cho màn hình nhỏ nhất (~360px)
    - @media (min-width: 768px)  → nâng cấp cho tablet
@@ -7,20 +7,21 @@
    ========================================================================== */
 
 /* ==========================================================================
-   1. DESIGN TOKENS – biến hệ thống thị giác (màu, chữ, khoảng cách, bo góc)
-   Dùng custom properties để thay đổi tập trung, nhất quán toàn trang.
+   1. DESIGN TOKENS – BIẾN HỆ THỐNG MÀU NEON CYBERPUNK
    ========================================================================== */
 :root {
-  /* --- Bảng màu --- */
-  --color-primary: #2563eb;      /* xanh thương hiệu */
-  --color-primary-dark: #1E3A8A;
-  --color-accent: #F59E0B;       /* tím nhấn */
-  --color-text: #172033;         /* chữ chính */
-  --color-text-soft: #64748B;    /* chữ phụ */
-  --color-bg: #F8FAFC;           /* nền trang */
-  --color-surface: #ffffff;      /* nền vùng nhấn */
-  --color-border: #e2e8f0;       /* viền tinh tế */
-  --color-chip: #eff6ff;         /* nền chip kỹ năng */
+  /* --- Bảng màu Neon --- */
+  --color-primary: #00f0ff;        /* Neon Cyan rực rỡ */
+  --color-primary-dark: #0284c7;   /* Xanh biển sâu */
+  --color-accent: #f43f5e;         /* Neon Pink / Rose nổi bật */
+  --color-accent-amber: #f59e0b;   /* Neon Gold / Amber */
+  --color-text: #f8fafc;           /* Chữ trắng sáng */
+  --color-text-soft: #94a3b8;      /* Chữ phụ xám xanh */
+  --color-bg: #080c15;             /* Nền không gian tối sâu */
+  --color-surface: rgba(15, 23, 42, 0.75); /* Nền kính mờ (Glassmorphism) */
+  --color-border: rgba(0, 240, 255, 0.22); /* Viền neon cyan tinh tế */
+  --color-chip: rgba(0, 240, 255, 0.1);    /* Nền chip neon */
+  --neon-glow: 0 0 20px rgba(0, 240, 255, 0.35);
 
   /* --- Typography --- */
   --font-base: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -28,21 +29,21 @@
   --fs-base: 1rem;     /* 16px */
   --fs-lg: 1.125rem;   /* 18px */
   --fs-h2: 1.5rem;     /* 24px */
-  --fs-h1: 2rem;       /* 32px (sẽ tăng ở desktop) */
+  --fs-h1: 2rem;       /* 32px */
   --lh-base: 1.6;
 
-  /* --- Khoảng cách (spacing scale) --- */
+  /* --- Khoảng cách --- */
   --space-1: 0.5rem;
   --space-2: 1rem;
   --space-3: 1.5rem;
   --space-4: 2rem;
   --space-5: 3rem;
 
-  /* --- Bố cục --- */
+  /* --- Bố cục & Hiệu ứng --- */
   --container-max: 1200px;
-  --radius: 12px;
+  --radius: 14px;
   --radius-sm: 8px;
-  --shadow: 0 1px 3px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.06);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 /* ==========================================================================
@@ -51,7 +52,7 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;   /* width đã bao gồm padding + border → dễ tính toán */
+  box-sizing: border-box;
 }
 
 * {
@@ -60,22 +61,29 @@
 }
 
 html {
-  scroll-behavior: smooth;        /* cuộn mượt khi bấm nav */
-  -webkit-text-size-adjust: 100%; /* chống iOS tự phóng chữ */
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
+/* --- NỀN WEB NEON HUYỀN ẢO & HIỆN ĐẠI --- */
 body {
   font-family: var(--font-base);
   font-size: var(--fs-base);
   line-height: var(--lh-base);
   color: var(--color-text);
-  background: var(--color-bg);
-  overflow-x: hidden; /* LƯỚI AN TOÀN chống cuộn ngang; bố cục bên dưới vẫn tự đúng */
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(0, 240, 255, 0.16), transparent 75%),
+    radial-gradient(circle at 10% 30%, rgba(244, 63, 94, 0.12), transparent 45%),
+    radial-gradient(circle at 90% 65%, rgba(168, 85, 247, 0.14), transparent 45%),
+    radial-gradient(circle at 40% 95%, rgba(0, 240, 255, 0.1), transparent 50%);
+  background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 img {
   display: block;
-  max-width: 100%;  /* ảnh không bao giờ tràn khung → không gây cuộn ngang */
+  max-width: 100%;
   height: auto;
 }
 
@@ -95,7 +103,7 @@ ul {
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: var(--space-2); /* lề ngang an toàn trên mobile */
+  padding-inline: var(--space-2);
 }
 
 .section {
@@ -103,12 +111,14 @@ ul {
 }
 
 .section-muted {
-  background: var(--color-surface);
+  background: transparent;
 }
 
 .section-title {
   font-size: var(--fs-h2);
   margin-bottom: var(--space-1);
+  color: #ffffff;
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
 }
 
 .section-sub {
@@ -117,21 +127,21 @@ ul {
 }
 
 /* ==========================================================================
-   4. HEADER + NAV (FLEXBOX)
-   Mobile: thương hiệu trên, menu xuống dòng và tự wrap → không tràn ngang.
+   4. HEADER + NAV (FLEXBOX NEON)
    ========================================================================== */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
+  background: rgba(8, 12, 21, 0.85);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .header-inner {
-  display: flex;             /* FLEXBOX */
-  flex-wrap: wrap;           /* cho phép xuống dòng trên màn hình hẹp */
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-1);
@@ -143,6 +153,7 @@ ul {
   align-items: center;
   gap: var(--space-1);
   font-weight: 700;
+  color: #ffffff;
 }
 
 .brand-mark {
@@ -151,14 +162,14 @@ ul {
   width: 2rem;
   height: 2rem;
   border-radius: var(--radius-sm);
-  background: var(--color-primary);
-  color: #fff;
+  background: linear-gradient(135deg, #00f0ff, #2563eb);
+  color: #080c15;
   font-weight: 800;
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.6);
 }
 
-/* Danh sách nav cũng là flex container */
 .nav-list {
-  display: flex;            /* FLEXBOX cho thanh điều hướng */
+  display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
 }
@@ -169,27 +180,27 @@ ul {
   color: var(--color-text-soft);
   font-weight: 500;
   border-bottom: 2px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  transition: all 0.2s ease;
 }
 
 .nav-list a:hover,
 .nav-list a:focus-visible {
   color: var(--color-primary);
   border-bottom-color: var(--color-primary);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
 }
 
 /* ==========================================================================
    5. HERO / GIỚI THIỆU
-   Mobile: xếp dọc (text trên, avatar dưới). Desktop: 2 cột.
    ========================================================================== */
 .hero {
   padding-block: var(--space-5);
-  background: linear-gradient(180deg, var(--color-surface), var(--color-bg));
+  background: transparent;
 }
 
 .hero-inner {
   display: flex;
-  flex-direction: column;     /* mobile-first: xếp dọc */
+  flex-direction: column;
   gap: var(--space-4);
   align-items: flex-start;
 }
@@ -198,21 +209,27 @@ ul {
   color: var(--color-primary);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   font-size: var(--fs-sm);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
 }
 
 .hero-title {
   font-size: var(--fs-h1);
   line-height: 1.15;
   margin-block: 0.25rem;
+  background: linear-gradient(135deg, #ffffff 40%, #00f0ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.25));
 }
 
 .hero-role {
   font-size: var(--fs-lg);
-  color: var(--color-accent);
+  color: var(--color-accent-amber);
   font-weight: 600;
   margin-bottom: var(--space-2);
+  text-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
 }
 
 .hero-desc {
@@ -229,38 +246,54 @@ ul {
 
 .hero-avatar img {
   border-radius: var(--radius);
-  /* box-shadow: var(--shadow); */
+  border: 2px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.25);
   width: 100%;
-  /* max-width: 260px; */
 }
 
-/* --- Nút bấm --- */
+/* --- Nút bấm Neon --- */
 .btn {
   display: inline-block;
-  padding: 0.7rem 1.4rem;
+  padding: 0.75rem 1.5rem;
   border-radius: var(--radius-sm);
   font-weight: 600;
   text-align: center;
-  transition: transform 0.12s, background 0.15s, box-shadow 0.15s;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
-.btn:active { transform: translateY(1px); }
+.btn:active {
+  transform: translateY(1px);
+}
 
 .btn-primary {
-  background: var(--color-primary);
-  color: #fff;
-  box-shadow: var(--shadow);
+  background: linear-gradient(135deg, #00f0ff, #0284c7);
+  color: #080c15;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
 }
-.btn-primary:hover { background: var(--color-primary-dark); }
+
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.7);
+  transform: translateY(-2px);
+}
 
 .btn-outline {
   border: 2px solid var(--color-primary);
   color: var(--color-primary);
+  background: rgba(0, 240, 255, 0.05);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
 }
-.btn-outline:hover { background: var(--color-chip); }
+
+.btn-outline:hover {
+  background: rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+  transform: translateY(-2px);
+}
 
 /* ==========================================================================
-   6. KỸ NĂNG – chip tự wrap bằng flex
+   6. KỸ NĂNG (NEON CHIPS)
    ========================================================================== */
 .skill-grid {
   display: flex;
@@ -269,45 +302,57 @@ ul {
 }
 
 .skill-chip {
-  background: var(--color-chip);
-  color: var(--color-primary-dark);
-  border: 1px solid var(--color-border);
-  padding: 0.5rem 0.9rem;
+  background: rgba(0, 240, 255, 0.08);
+  color: #38bdf8;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 0.5rem 1rem;
   border-radius: 999px;
   font-size: var(--fs-sm);
   font-weight: 600;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.12);
+  transition: all 0.2s ease;
+}
+
+.skill-chip:hover {
+  border-color: #00f0ff;
+  background: rgba(0, 240, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+  transform: translateY(-2px);
+  color: #ffffff;
 }
 
 /* ==========================================================================
-   7. DỰ ÁN – CSS GRID cho danh sách thẻ
-   Mobile: 1 cột. Tablet: 2 cột. Desktop: 3 cột.
+   7. DỰ ÁN – CSS GRID NEON CARDS
    ========================================================================== */
 .project-grid {
-  display: grid;                       /* CSS GRID */
-  grid-template-columns: 1fr;          /* mobile-first: 1 cột */
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--space-3);
 }
 
 .card {
-  background: var(--color-bg);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  overflow: hidden;                    /* bo góc gọn cả ảnh */
+  overflow: hidden;
   box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: all 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
+  box-shadow: 0 12px 35px rgba(0, 240, 255, 0.22);
 }
 
 .card-media {
   width: 100%;
-  aspect-ratio: 5 / 3;                 /* giữ tỉ lệ ảnh ổn định */
+  aspect-ratio: 5 / 3;
   object-fit: cover;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .card-body {
@@ -315,10 +360,13 @@ ul {
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  flex: 1;                             /* các thẻ cao bằng nhau trong grid */
+  flex: 1;
 }
 
-.card-title { font-size: var(--fs-lg); }
+.card-title {
+  font-size: var(--fs-lg);
+  color: #ffffff;
+}
 
 .card-desc {
   color: var(--color-text-soft);
@@ -335,10 +383,10 @@ ul {
 .tag-list li {
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-text-soft);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  padding: 0.2rem 0.55rem;
+  color: #38bdf8;
+  background: rgba(8, 12, 21, 0.8);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  padding: 0.2rem 0.6rem;
   border-radius: 999px;
 }
 
@@ -347,10 +395,17 @@ ul {
   font-weight: 600;
   font-size: var(--fs-sm);
   margin-top: var(--space-1);
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.card-link:hover {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+  transform: translateX(3px);
 }
 
 /* ==========================================================================
-   8. LIÊN HỆ (GIAO DIỆN HIỆN ĐẠI & TINH TẾ)
+   8. LIÊN HỆ (NEON CYBERPUNK SECTION)
    ========================================================================== */
 .contact-grid {
   display: grid;
@@ -370,6 +425,7 @@ ul {
 /* Thẻ thông tin bên trái */
 .contact-card {
   background: var(--color-surface);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: var(--space-3);
@@ -380,34 +436,35 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #ecfdf5;
-  color: #059669;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
   font-size: 0.8125rem;
   font-weight: 600;
   padding: 0.35rem 0.75rem;
   border-radius: 999px;
   margin-bottom: var(--space-2);
-  border: 1px solid #a7f3d0;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
 }
 
 .badge-dot {
   width: 8px;
   height: 8px;
-  background-color: #10b981;
+  background-color: #00ff88;
   border-radius: 50%;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 10px #00ff88;
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.15); }
+  50% { opacity: 0.5; transform: scale(1.2); }
 }
 
 .contact-card-title {
   font-size: var(--fs-lg);
   margin-bottom: 0.5rem;
-  color: var(--color-text);
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -431,7 +488,7 @@ ul {
   gap: 1rem;
   padding: 0.75rem 1rem;
   border-radius: var(--radius-sm);
-  background: var(--color-bg);
+  background: rgba(8, 12, 21, 0.7);
   border: 1px solid var(--color-border);
   transition: all 0.2s ease;
   color: inherit;
@@ -441,8 +498,8 @@ ul {
 .channel-item:hover {
   border-color: var(--color-primary);
   transform: translateX(4px);
-  background: #eff6ff;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
 }
 
 .channel-icon {
@@ -451,18 +508,18 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
+  background: rgba(0, 240, 255, 0.1);
   border-radius: 8px;
   color: var(--color-primary);
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(0, 240, 255, 0.3);
   flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
 .channel-item:hover .channel-icon {
   background: var(--color-primary);
-  color: #ffffff;
-  border-color: var(--color-primary);
+  color: #080c15;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
 }
 
 .channel-text {
@@ -476,13 +533,13 @@ ul {
   font-weight: 700;
   color: var(--color-text-soft);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .channel-val {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--color-text);
+  color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -491,6 +548,7 @@ ul {
 /* Form liên hệ bên phải */
 .contact-form {
   background: var(--color-surface);
+  backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
   padding: var(--space-3);
@@ -502,7 +560,7 @@ ul {
 
 .form-title {
   font-size: var(--fs-lg);
-  color: var(--color-text);
+  color: #ffffff;
   font-weight: 700;
   margin-bottom: 0.15rem;
 }
@@ -522,23 +580,23 @@ ul {
 .form-group label {
   font-size: var(--fs-sm);
   font-weight: 600;
-  color: var(--color-text);
+  color: #e2e8f0;
 }
 
 .form-group .required {
-  color: #ef4444;
+  color: #f43f5e;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1.5px solid #cbd5e1;
+  border: 1.5px solid rgba(0, 240, 255, 0.25);
   border-radius: var(--radius-sm);
   font-family: inherit;
   font-size: var(--fs-base);
-  background: #ffffff;
-  color: var(--color-text);
+  background: rgba(8, 12, 21, 0.75);
+  color: #ffffff;
   transition: all 0.2s ease;
   outline: none;
 }
@@ -546,7 +604,8 @@ ul {
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3.5px rgba(37, 99, 235, 0.15);
+  background: rgba(8, 12, 21, 0.95);
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.35);
 }
 
 .form-group textarea {
@@ -563,12 +622,13 @@ ul {
   cursor: pointer;
   border: none;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: var(--radius-sm);
-  background: var(--color-primary);
-  color: #ffffff;
+  background: linear-gradient(135deg, #00f0ff, #0284c7);
+  color: #080c15;
   transition: all 0.2s ease;
   width: 100%;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
 }
 
 @media (min-width: 640px) {
@@ -579,8 +639,7 @@ ul {
 }
 
 .btn-submit:hover {
-  background: var(--color-primary-dark);
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.7);
   transform: translateY(-2px);
 }
 
@@ -590,7 +649,7 @@ ul {
   transform: none;
 }
 
-/* Thông báo trạng thái gửi (Alert) */
+/* Thông báo trạng thái gửi (Neon Alert) */
 .contact-status {
   display: none;
   padding: 0.75rem 1rem;
@@ -602,16 +661,18 @@ ul {
 
 .contact-status.status-success {
   display: block;
-  background: #ecfdf5;
-  color: #065f46;
-  border: 1px solid #a7f3d0;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
 }
 
 .contact-status.status-error {
   display: block;
-  background: #fef2f2;
-  color: #991b1b;
-  border: 1px solid #fecaca;
+  background: rgba(244, 63, 94, 0.15);
+  color: #fb7185;
+  border: 1px solid rgba(251, 113, 133, 0.4);
+  box-shadow: 0 0 15px rgba(244, 63, 94, 0.2);
 }
 
 /* ========================================================================== 
@@ -619,7 +680,7 @@ ul {
    ========================================================================== */
 .site-footer {
   border-top: 1px solid var(--color-border);
-  background: var(--color-surface);
+  background: rgba(8, 12, 21, 0.9);
   padding-block: var(--space-3);
 }
 
@@ -633,7 +694,15 @@ ul {
   font-size: var(--fs-sm);
 }
 
-.to-top { color: var(--color-primary); font-weight: 600; }
+.to-top {
+  color: var(--color-primary);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.to-top:hover {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+}
 
 /* ==========================================================================
    10. MEDIA QUERIES – nâng cấp theo breakpoint (mobile-first)
@@ -642,13 +711,12 @@ ul {
 /* ----- TABLET: ≥ 768px ----- */
 @media (min-width: 768px) {
   :root {
-    --fs-h1: 2.5rem;   /* 40px */
-    --fs-h2: 1.75rem;  /* 28px */
+    --fs-h1: 2.5rem;
+    --fs-h2: 1.75rem;
   }
 
   .container { padding-inline: var(--space-3); }
 
-  /* Hero chuyển sang 2 cột */
   .hero-inner {
     flex-direction: row;
     align-items: center;
@@ -657,7 +725,6 @@ ul {
   .hero-text { flex: 1; }
   .hero-avatar img { max-width: 300px; }
 
-  /* Lưới dự án: 2 cột */
   .project-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -666,10 +733,9 @@ ul {
 /* ----- DESKTOP: ≥ 1280px ----- */
 @media (min-width: 1280px) {
   :root {
-    --fs-h1: 3rem;     /* 48px */
+    --fs-h1: 3rem;
   }
 
-  /* Lưới dự án: 3 cột */
   .project-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -681,7 +747,7 @@ ul {
    11. HỖ TRỢ TIẾP CẬN & ƯA THÍCH NGƯỜI DÙNG
    ========================================================================== */
 :focus-visible {
-  outline: 3px solid var(--color-accent);
+  outline: 3px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: 4px;
 }
