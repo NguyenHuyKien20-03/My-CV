@@ -325,6 +325,34 @@
       }
     });
   </script>
+<style>
+  /* Thiết lập kiểu dáng và hiệu ứng mượt mà mặc định cho các thẻ kỹ năng */
+#skills .skill-chip {
+    display: inline-block;
+    padding: 10px 18px;
+    margin: 6px;
+    background-color: #f1f3f5;
+    color: #333;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #e0e0e0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Hiệu ứng khi rê chuột vào: Nổi lên, phóng to nhẹ và đổi màu tươi sáng */
+#skills .skill-chip:hover {
+    transform: translateY(-4px) scale(1.06);
+    background-color: #007bff;
+    color: #ffffff;
+    border-color: #007bff;
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+}
+/* Hiệu ứng khi bấm (click) vào: Thu nhỏ lại tạo cảm giác lún nút */
+#skills .skill-chip:active {
+    transform: translateY(1px) scale(0.96);
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+}
+</style>
 
 </body>
 
