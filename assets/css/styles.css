@@ -18,8 +18,8 @@
   --color-text: #172033;         /* chữ chính */
   --color-text-soft: #64748B;    /* chữ phụ */
   --color-bg: #F8FAFC;           /* nền trang */
-  --color-surface: #ffff;      /* nền vùng nhấn */
-  --color-border: #2CFF05;       /* viền */
+  --color-surface: #ffffff;      /* nền vùng nhấn */
+  --color-border: #e2e8f0;       /* viền tinh tế */
   --color-chip: #eff6ff;         /* nền chip kỹ năng */
 
   /* --- Typography --- */
@@ -350,52 +350,269 @@ ul {
 }
 
 /* ==========================================================================
-   8. LIÊN HỆ
+   8. LIÊN HỆ (GIAO DIỆN HIỆN ĐẠI & TINH TẾ)
    ========================================================================== */
-.contact-list {
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+@media (min-width: 960px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1.25fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+}
+
+/* Thẻ thông tin bên trái */
+.contact-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  box-shadow: var(--shadow);
+}
+
+.contact-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ecfdf5;
+  color: #059669;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  margin-bottom: var(--space-2);
+  border: 1px solid #a7f3d0;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.15); }
+}
+
+.contact-card-title {
+  font-size: var(--fs-lg);
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.contact-card-desc {
+  color: var(--color-text-soft);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  margin-bottom: var(--space-3);
+}
+
+/* Danh sách kênh liên hệ */
+.contact-channel-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
+  gap: 0.75rem;
 }
 
-.contact-list li {
+.channel-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1);
-  align-items: baseline;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+  color: inherit;
+  text-decoration: none;
 }
 
-.contact-label {
-  min-width: 90px;
+.channel-item:hover {
+  border-color: var(--color-primary);
+  transform: translateX(4px);
+  background: #eff6ff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+}
+
+.channel-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 8px;
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.channel-item:hover .channel-icon {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.channel-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.channel-name {
+  font-size: 0.75rem;
   font-weight: 700;
+  color: var(--color-text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.channel-val {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Form liên hệ bên phải */
+.contact-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.form-title {
+  font-size: var(--fs-lg);
+  color: var(--color-text);
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.form-desc {
+  font-size: var(--fs-sm);
+  color: var(--color-text-soft);
+  margin-bottom: 0.4rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: var(--fs-sm);
+  font-weight: 600;
   color: var(--color-text);
 }
 
-.contact-list a { color: var(--color-primary); }
-.contact-list a:hover { text-decoration: underline; }
+.form-group .required {
+  color: #ef4444;
+}
 
-.contact-inner form { margin-top: var(--space-3); }
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--fs-base);
+  background: #ffffff;
+  color: var(--color-text);
+  transition: all 0.2s ease;
+  outline: none;
+}
 
-.contact-inner fieldset {
-  display: flex;
-  flex-wrap: wrap;
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3.5px rgba(37, 99, 235, 0.15);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.btn-submit {
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-2);
-  border: 2px solid #000;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  cursor: pointer;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
   border-radius: var(--radius-sm);
-  transition: border-color 0.15s;
+  background: var(--color-primary);
+  color: #ffffff;
+  transition: all 0.2s ease;
+  width: 100%;
 }
 
-.contact-inner input {
-  padding: 0.5rem;
-  border: 2px solid #000;
-  border-radius: var(--radius-sm);
+@media (min-width: 640px) {
+  .btn-submit {
+    width: auto;
+    align-self: flex-start;
+  }
 }
 
-.contact-inner input:user-invalid { border-color: #dc2626; }
-.contact-inner input:user-valid { border-color: #16a34a; }
-.contact-inner input:focus { border-color: #f59e0b; outline: none; }
+.btn-submit:hover {
+  background: var(--color-primary-dark);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+  transform: translateY(-2px);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Thông báo trạng thái gửi (Alert) */
+.contact-status {
+  display: none;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.contact-status.status-success {
+  display: block;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.contact-status.status-error {
+  display: block;
+  background: #fef2f2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
 
 /* ========================================================================== 
    9. FOOTER
