@@ -191,7 +191,7 @@ ul {
 }
 
 /* ==========================================================================
-   5. HERO / GIỚI THIỆU
+   5. HERO / GIỚI THIỆU & CÁC HIỆU ỨNG ANIMATION ĐẸP MẮT
    ========================================================================== */
 .hero {
   padding-block: var(--space-5);
@@ -205,6 +205,27 @@ ul {
   align-items: flex-start;
 }
 
+/* Hiệu ứng bàn tay vẫy chào vui vẻ */
+.wave-hand {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: waveHand 2.2s ease-in-out infinite;
+  margin-right: 6px;
+}
+
+@keyframes waveHand {
+  0%, 100% { transform: rotate(0deg); }
+  10%, 30% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  40% { transform: rotate(10deg); }
+  50% { transform: rotate(0deg); }
+}
+
+/* Hiệu ứng xuất hiện mượt mà (Fade In Up) */
+.hero-text .eyebrow {
+  animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 .eyebrow {
   color: var(--color-primary);
   font-weight: 600;
@@ -212,36 +233,81 @@ ul {
   letter-spacing: 0.1em;
   font-size: var(--fs-sm);
   text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+  display: inline-flex;
+  align-items: center;
 }
 
+/* Hiệu ứng dải màu Neon chuyển động trên tên (Neon Text Shimmer) */
 .hero-title {
   font-size: var(--fs-h1);
   line-height: 1.15;
   margin-block: 0.25rem;
-  background: linear-gradient(135deg, #ffffff 40%, #00f0ff 100%);
+  background: linear-gradient(
+    90deg,
+    #ffffff 0%,
+    #00f0ff 25%,
+    #f43f5e 50%,
+    #00f0ff 75%,
+    #ffffff 100%
+  );
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.25));
+  animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both,
+             neonTextShimmer 4s linear infinite;
+  filter: drop-shadow(0 0 25px rgba(0, 240, 255, 0.4));
 }
 
+@keyframes neonTextShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Hiệu ứng con trỏ terminal nhấp nháy cho chức danh */
 .hero-role {
   font-size: var(--fs-lg);
   color: var(--color-accent-amber);
   font-weight: 600;
   margin-bottom: var(--space-2);
   text-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+  animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero-role::after {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 1.15em;
+  background-color: var(--color-primary);
+  margin-left: 8px;
+  animation: blinkCursor 0.9s infinite;
+  box-shadow: 0 0 8px var(--color-primary);
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .hero-desc {
   color: var(--color-text-soft);
   max-width: 60ch;
   margin-bottom: var(--space-3);
+  animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+  animation: heroFadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+}
+
+/* Hiệu ứng avatar nổi bồng bềnh nhẹ nhàng */
+.hero-avatar {
+  animation: heroAvatarFloat 4s ease-in-out infinite alternate;
 }
 
 .hero-avatar img {
@@ -249,6 +315,26 @@ ul {
   border: 2px solid rgba(0, 240, 255, 0.4);
   box-shadow: 0 0 35px rgba(0, 240, 255, 0.25);
   width: 100%;
+}
+
+@keyframes heroFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroAvatarFloat {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
 }
 
 /* --- Nút bấm Neon --- */
